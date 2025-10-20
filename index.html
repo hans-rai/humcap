@@ -1,0 +1,1668 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UNFPA Bangladesh Humanitarian Evaluation - Slideshow</title>
+    <style>
+        :root {
+            --primary: #0066cc;
+            --secondary: #00a3d9;
+            --accent: #ff6b00;
+            --light: #f5f9ff;
+            --dark: #333;
+            --success: #28a745;
+            --warning: #ffc107;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, var(--light) 0%, #e6f2ff 100%);
+            color: var(--dark);
+            line-height: 1.5;
+            min-height: 100vh;
+            font-size: 13px;
+        }
+        
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 15px;
+        }
+        
+        header {
+            text-align: center;
+            padding: 15px 0;
+            background: linear-gradient(90deg, var(--primary) 0%, var(--secondary) 100%);
+            color: white;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+        
+        h1 {
+            font-size: 1.6rem;
+            margin-bottom: 8px;
+        }
+        
+        .subtitle {
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+        
+        .slideshow-container {
+            position: relative;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            margin-bottom: 15px;
+            height: 75vh;
+        }
+        
+        .slides {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+            height: 100%;
+        }
+        
+        .slide {
+            min-width: 100%;
+            padding: 20px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            align-items: start;
+            height: 100%;
+        }
+        
+        @media (max-width: 992px) {
+            .slide {
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
+        }
+        
+        .slide-left {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            height: 100%;
+        }
+        
+        .slide-right {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            height: 100%;
+            overflow: hidden;
+        }
+        
+        .action-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 8px;
+            cursor: pointer;
+        }
+
+        .action-header:hover {
+            opacity: 0.8;
+        }
+        
+        .action-letter {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background: var(--accent);
+            color: white;
+            border-radius: 50%;
+            font-size: 1.2rem;
+            font-weight: bold;
+            flex-shrink: 0;
+        }
+        
+        .action-title {
+            font-size: 1.3rem;
+            color: var(--primary);
+            font-weight: 600;
+        }
+        
+        .level-badge {
+            padding: 3px 10px;
+            border-radius: 15px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            margin-left: auto;
+        }
+        
+        .level-country {
+            background: #e6f7ff;
+            color: var(--primary);
+            border: 1px solid var(--primary);
+        }
+        
+        .level-global {
+            background: #fff2e8;
+            color: var(--accent);
+            border: 1px solid var(--accent);
+        }
+
+        .full-recommendation-text {
+            display: none;
+            padding: 12px;
+            margin: -5px 0 10px 0;
+            background-color: #f0f8ff;
+            border-radius: 8px;
+            border: 1px solid var(--secondary);
+            font-size: 0.9rem;
+            line-height: 1.5;
+            color: #333;
+        }
+
+        .full-recommendation-text.visible {
+            display: block;
+        }
+        
+        .conclusion-box {
+            background: #e8f4ff;
+            border-radius: 8px;
+            padding: 15px;
+            border-left: 4px solid var(--secondary);
+            flex: 1;
+            overflow-y: auto;
+        }
+        
+        .conclusion-title {
+            font-weight: 600;
+            color: var(--primary);
+            margin-bottom: 8px;
+            font-size: 1rem;
+        }
+        
+        .conclusion-text {
+            font-style: italic;
+            line-height: 1.4;
+            font-size: 0.85rem;
+        }
+        
+        .findings-container {
+            background: #f8f9fa;
+            border-radius: 8px;
+            padding: 15px;
+            flex: 1;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .findings-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 12px;
+            padding-bottom: 8px;
+            border-bottom: 2px solid var(--secondary);
+        }
+        
+        .findings-title {
+            font-size: 1.1rem;
+            color: var(--primary);
+        }
+        
+        .finding-count {
+            background: var(--primary);
+            color: white;
+            padding: 4px 12px;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+        
+        .findings-list {
+            flex: 1;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+        
+        .finding-item {
+            background: white;
+            border-radius: 6px;
+            padding: 12px;
+            border-left: 4px solid var(--secondary);
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+        }
+        
+        .finding-header {
+            display: flex;
+            align-items: flex-start;
+            gap: 8px;
+            margin-bottom: 8px;
+            cursor: pointer;
+        }
+        
+        .finding-header:hover {
+            opacity: 0.8;
+        }
+        
+        .finding-number {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 24px;
+            height: 24px;
+            background: var(--secondary);
+            color: white;
+            border-radius: 50%;
+            font-size: 0.8rem;
+            font-weight: bold;
+            flex-shrink: 0;
+        }
+        
+        .finding-meta {
+            font-size: 0.75rem;
+            color: #666;
+            margin-bottom: 4px;
+        }
+        
+        .eq-tag {
+            display: inline-block;
+            background: #e6f7ff;
+            color: var(--primary);
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-weight: 600;
+            margin-right: 8px;
+        }
+        
+        .finding-text {
+            font-weight: 500;
+            line-height: 1.4;
+            font-size: 0.85rem;
+        }
+        
+        .rationale-section {
+            margin-top: 10px;
+            padding: 10px;
+            background: #f8f9fa;
+            border-radius: 6px;
+            border-left: 3px solid var(--accent);
+            display: none;
+        }
+        
+        .rationale-section.active {
+            display: block;
+        }
+        
+        .rationale-title {
+            font-weight: 600;
+            color: var(--accent);
+            margin-bottom: 6px;
+            font-size: 0.85rem;
+        }
+        
+        .context-section {
+            margin-bottom: 8px;
+        }
+        
+        .context-label {
+            font-weight: 600;
+            color: var(--primary);
+            font-size: 0.8rem;
+            margin-bottom: 4px;
+        }
+        
+        .context-text {
+            font-size: 0.8rem;
+            line-height: 1.4;
+            color: #555;
+        }
+        
+        .example-box {
+            background: #fff9e6;
+            border-left: 3px solid var(--warning);
+            padding: 8px;
+            margin-top: 6px;
+            border-radius: 4px;
+        }
+        
+        .example-label {
+            font-weight: 600;
+            color: var(--warning);
+            font-size: 0.75rem;
+            margin-bottom: 4px;
+        }
+        
+        .navigation {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+        }
+        
+        .nav-btn {
+            padding: 10px 20px;
+            background: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 20px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 0.85rem;
+        }
+        
+        .nav-btn:hover {
+            background: var(--secondary);
+            transform: translateY(-2px);
+        }
+        
+        .nav-btn:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+            transform: none;
+        }
+        
+        .slide-indicators {
+            display: flex;
+            gap: 8px;
+            align-items: center;
+        }
+        
+        .slide-indicator {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: #e0e0e0;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .slide-indicator.active {
+            background: var(--primary);
+            transform: scale(1.2);
+        }
+        
+        .slide-counter {
+            font-weight: 600;
+            color: var(--primary);
+            margin: 0 12px;
+            font-size: 0.85rem;
+        }
+        
+        .section-title {
+            font-size: 0.8rem;
+            color: #666;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 3px;
+        }
+        
+        footer {
+            text-align: center;
+            padding: 15px;
+            margin-top: 15px;
+            color: #666;
+            font-size: 0.8rem;
+        }
+        
+        /* Scrollbar styling */
+        .conclusion-box::-webkit-scrollbar,
+        .findings-list::-webkit-scrollbar {
+            width: 5px;
+        }
+        
+        .conclusion-box::-webkit-scrollbar-track,
+        .findings-list::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 3px;
+        }
+        
+        .conclusion-box::-webkit-scrollbar-thumb,
+        .findings-list::-webkit-scrollbar-thumb {
+            background: var(--secondary);
+            border-radius: 3px;
+        }
+        
+        .conclusion-box::-webkit-scrollbar-thumb:hover,
+        .findings-list::-webkit-scrollbar-thumb:hover {
+            background: var(--primary);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>UNFPA Bangladesh Humanitarian Evaluation</h1>
+            <p class="subtitle">Assessment of Capacity in Humanitarian Action (2025) - Recommendations Overview</p>
+        </header>
+        
+        <div class="slideshow-container">
+            <div class="slides">
+                <!-- Slide 1: Action A -->
+                <div class="slide">
+                    <div class="slide-left">
+                        <div class="action-header">
+                            <div class="action-letter">A</div>
+                            <div class="action-title">Develop Nexus Guidance Note</div>
+                            <div class="level-badge level-country">Country Level</div>
+                        </div>
+                        <div class="full-recommendation-text">
+                            A. UNFPA Bangladesh should develop a guidance note on the core elements of working at the nexus, in order to better operationalize its commitments to bridging the humanitarian-development divide as articulated in the 10th CPD. This note should address the challenges and possibilities of government sustainability of humanitarian response programming.
+                        </div>
+                        
+                        <div class="conclusion-box">
+                            <div class="conclusion-title">Linked Conclusions:</div>
+                            <div class="conclusion-text">
+                                <strong>Conclusion 1:</strong> "UNFPA in Bangladesh is committed to investing in climate adaptation and working across the nexus, and is spearheading many important initiatives that facilitate preparedness, early disaster response, resilient early recovery, and, in Cox's Bazar, area-based responses that include host communities. The current CPD underscores this commitment, as does UNFPA's innovative programming such as cash and voucher assistance, anticipatory action and decentralized procurement. However, there is no specific articulation in the CPD or in specific country programme guidance on what the nexus entails for the CO."<br><br>
+                                <strong>Conclusion 4:</strong> "UNFPA support has led to significant increases in utilization of a range of SRH, GBV and A&Y services in Cox's Bazar and to a lesser, but still important, extent in sudden-onset disasters over the evaluation period. UNFPA has also improved the quality of these services over time to better address the needs of specific populations, such as PWD and third gender populations. Moreover, UNFPA has sought to maximize efficiency in delivery of services through integrated approaches. However, despite UNFPA's strong relationship with the Government of Bangladesh, sustainability of services presents ongoing and future challenges, particularly in relation to accelerating funding shortfalls affecting Cox's Bazar and short project cycles for disasters."
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="slide-right">
+                        <div class="findings-container">
+                            <div class="findings-header">
+                                <div class="findings-title">Supporting Findings</div>
+                                <div class="finding-count">5 findings</div>
+                            </div>
+                            
+                            <div class="findings-list">
+                                <!-- Finding 1 -->
+                                <div class="finding-item">
+                                    <div class="finding-header" onclick="toggleRationale('rationale1')">
+                                        <div class="finding-number">1</div>
+                                        <div>
+                                            <div class="finding-meta">
+                                                <span class="eq-tag">EQ1: Relevance/Appropriateness</span>
+                                            </div>
+                                            <div class="finding-text">While the current (10th) CPD for Bangladesh (2022-2026) departs from the 9th CPD's humanitarian commitments insofar as it does not reference refugee response, there is significantly increased attention to disaster preparedness and response and UNFPA's commitment to working across the humanitarian-development continuum in the 10th CPD.</div>
+                                        </div>
+                                    </div>
+                                    <div class="rationale-section" id="rationale1">
+                                        <div class="rationale-title">Rationale & Evidence</div>
+                                        
+                                        <div class="context-section">
+                                            <div class="context-label">Cox's Bazar Context:</div>
+                                            <div class="context-text">The 10th CPD explicitly excludes Rohingya response, directing it to the Joint Response Plan, while increasing focus on disaster preparedness.</div>
+                                        </div>
+                                        
+                                        <div class="context-section">
+                                            <div class="context-label">Country Office Context:</div>
+                                            <div class="context-text">Key informants reported the "humanitarian-development continuum" is not specifically defined in the 10th CPD document or country guidance, creating uncertainty about practical implementation targets. Several UNFPA key informants expressed concern that the meaning is not specifically defined, leading to unclear targets for nexus work in Bangladesh.</div>
+                                        </div>
+                                        
+                                        <div class="example-box">
+                                            <div class="example-label">Key Evidence:</div>
+                                            <div class="context-text">"Several key informants from UNFPA expressed concern that the meaning of the humanitarian-development continuum is not specifically defined within the 10th CPD document, nor elsewhere in country guidance."</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <!-- Finding 8 -->
+                                <div class="finding-item">
+                                    <div class="finding-header" onclick="toggleRationale('rationale8')">
+                                        <div class="finding-number">8</div>
+                                        <div>
+                                            <div class="finding-meta">
+                                                <span class="eq-tag">EQ4: Data for Response</span>
+                                            </div>
+                                            <div class="finding-text">UNFPA is facilitating improved use and dissemination of reliable programme and population data in humanitarian response in Bangladesh, although further efforts could show how UNFPA support positively impacts the lives of women and girls, and communities more broadly.</div>
+                                        </div>
+                                    </div>
+                                    <div class="rationale-section" id="rationale8">
+                                        <div class="rationale-title">Rationale & Evidence</div>
+                                        
+                                        <div class="context-section">
+                                            <div class="context-label">Cox's Bazar Context:</div>
+                                            <div class="context-text">UNFPA's investment in data gathering in Cox's Bazar response (from information management systems, programme monitoring to specialized evaluations) has contributed to its ability to advocate for continued, evidence-based interventions within the JRPs.</div>
+                                        </div>
+                                        
+                                        <div class="context-section">
+                                            <div class="context-label">Country Office Context:</div>
+                                            <div class="context-text">While data is used for strategic decisions, there's a gap in demonstrating how interventions translate to positive impact on communities. UNFPA utilizes monitoring systems including analyzing real-time data on service uptake to identify areas with low uptake and make programmatic adjustments.</div>
+                                        </div>
+                                        
+                                        <div class="example-box">
+                                            <div class="example-label">Key Evidence:</div>
+                                            <div class="context-text">"In just one example provided by a UNFPA key informant, the analysis of family planning service uptake in the camps has helped determine that service distribution is working, leading to its continuation and informing resource requests."</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <!-- Finding 11 -->
+                                <div class="finding-item">
+                                    <div class="finding-header" onclick="toggleRationale('rationale11')">
+                                        <div class="finding-number">11</div>
+                                        <div>
+                                            <div class="finding-meta">
+                                                <span class="eq-tag">EQ6: Efficiency</span>
+                                            </div>
+                                            <div class="finding-text">UNFPA Bangladesh has implemented several procedural improvements and innovations to facilitate humanitarian response, with key support from the UNFPA AP regional office.</div>
+                                        </div>
+                                    </div>
+                                    <div class="rationale-section" id="rationale11">
+                                        <div class="rationale-title">Rationale & Evidence</div>
+                                        
+                                        <div class="context-section">
+                                            <div class="context-label">Country Office Context:</div>
+                                            <div class="context-text">A significant achievement was the finalization in 2023 of country-level SOPs that guide the CO in its initial response to natural disasters affecting the country. These SOPs outline key steps, budget, emergency funding processes, timelines, roles, and responsibilities for both preparedness and response.</div>
+                                        </div>
+                                        
+                                        <div class="example-box">
+                                            <div class="example-label">Key Evidence:</div>
+                                            <div class="context-text">"According to a UNFPA key informant, their implementation has reduced response time significantly, from nearly three months after a disaster to three days, which IP key informants also noted."</div>
+                                        </div>
+                                        
+                                        <div class="example-box">
+                                            <div class="example-label">Additional Innovation:</div>
+                                            <div class="context-text">"The CO has also adapted regional guidance on AAP to Bangladesh context to make it more operational and finalized an Anticipatory Action protocol in 2024."</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <!-- Finding 13 -->
+                                <div class="finding-item">
+                                    <div class="finding-header" onclick="toggleRationale('rationale13')">
+                                        <div class="finding-number">13</div>
+                                        <div>
+                                            <div class="finding-meta">
+                                                <span class="eq-tag">EQ6: Efficiency</span>
+                                            </div>
+                                            <div class="finding-text">Although well-staffed in comparison to other UNFPA COs, ensuring adequate human resources has been a challenge in both Cox's Bazar and in UNFPA's disaster response.</div>
+                                        </div>
+                                    </div>
+                                    <div class="rationale-section" id="rationale13">
+                                        <div class="rationale-title">Rationale & Evidence</div>
+                                        
+                                        <div class="context-section">
+                                            <div class="context-label">Cox's Bazar Context:</div>
+                                            <div class="context-text">In the past there have been leadership vacuums and severe staffing reductions in key areas like GBV coordination, impacting agency presence, strength and advocacy capacity. Staff were on temporary appointments or service contracts.</div>
+                                        </div>
+                                        
+                                        <div class="context-section">
+                                            <div class="context-label">Country Office Context:</div>
+                                            <div class="context-text">Key informants expressed that the scope and frequency of disasters in Bangladesh require a more substantial team of humanitarian-dedicated staff than has existed to date. One UNFPA key informant expressed the view that it is "time to make a full-face humanitarian team for Bangladesh country office."</div>
+                                        </div>
+                                        
+                                        <div class="example-box">
+                                            <div class="example-label">Key Evidence:</div>
+                                            <div class="context-text">"A human resources realignment took place around mid-2023... to transition a large number of Cox's Bazar staff to fixed-term contracts instead of temporary appointments or service contracts. UNFPA Cox's Bazar managed to complete a 'remarkable' 40 recruitments in one year as part of this realignment."</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <!-- Finding 16 -->
+                                <div class="finding-item">
+                                    <div class="finding-header" onclick="toggleRationale('rationale16')">
+                                        <div class="finding-number">16</div>
+                                        <div>
+                                            <div class="finding-meta">
+                                                <span class="eq-tag">EQ8: Connectedness</span>
+                                            </div>
+                                            <div class="finding-text">UNFPA promotes several humanitarian preparedness and response interventions in Bangladesh that support, and plan for, longer-term developmental and resilience-related goals.</div>
+                                        </div>
+                                    </div>
+                                    <div class="rationale-section" id="rationale16">
+                                        <div class="rationale-title">Rationale & Evidence</div>
+                                        
+                                        <div class="context-section">
+                                            <div class="context-label">Cox's Bazar Context:</div>
+                                            <div class="context-text">UNFPA is considering approaches for transitioning towards more area-based responses, recognizing the overlap between humanitarian and development needs given that the Rohingya have been in Bangladesh for eight years.</div>
+                                        </div>
+                                        
+                                        <div class="context-section">
+                                            <div class="context-label">Country Office Context:</div>
+                                            <div class="context-text">Programmatically, UNFPA implements initiatives that are integrated with the HDP nexus. Examples include provision of conditional cash support for adolescent girls to stay in school after disasters, specifically aimed at preventing child marriage, a harmful norm often exacerbated by crises.</div>
+                                        </div>
+                                        
+                                        <div class="example-box">
+                                            <div class="example-label">Key Evidence:</div>
+                                            <div class="context-text">"UNFPA has engaged in discussions with and received funding from International Financial Institutions such as the World Bank and Asian Development Bank, recognizing the potential for development funding to support resilience activities for both host and refugee populations."</div>
+                                        </div>
+                                        
+                                        <div class="example-box">
+                                            <div class="example-label">Specific Example:</div>
+                                            <div class="context-text">"UNFPA support to MHPSS in emergency settings also contributes to the resilience and well-being of affected populations. UNFPA has also drawn from its emergency work—such as support to the national hotline in emergency response—to build out the hotline response in development."</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Slide 2: Action B -->
+                <div class="slide">
+                    <div class="slide-left">
+                        <div class="action-header">
+                            <div class="action-letter">B</div>
+                            <div class="action-title">Explore Diverse Funding Streams</div>
+                            <div class="level-badge level-country">Country Level</div>
+                        </div>
+                        <div class="full-recommendation-text">
+                            B. UNFPA should continue its innovative work to explore different funding streams for emergencies, including through anticipatory action and engagement with IFIs. As part of this, UNFPA must be able to illustrate clearly the life-saving nature of its work (see recommendation C). UNFPA Bangladesh should document successes for wider agency learning.
+                        </div>
+                        
+                        <div class="conclusion-box">
+                            <div class="conclusion-title">Linked Conclusion:</div>
+                            <div class="conclusion-text">
+                                <strong>Conclusion 2:</strong> "UNFPA is widely recognized as a key UN partner in the Rohingya refugee response and in response to sudden-onset natural disasters in Bangladesh. Its facilitation of SRH, GBV, and A&Y coordination and programming has positioned UNFPA as a leader in these sectors. However, funding for these sectors remains consistently lower than other humanitarian sectors. This presents significant challenges to coverage of needs, particularly in disaster response. UNFPA has used and continues to diversify funding mechanisms to expand coverage, such as through IFI funding in Cox's Bazar."
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="slide-right">
+                        <div class="findings-container">
+                            <div class="findings-header">
+                                <div class="findings-title">Supporting Findings</div>
+                                <div class="finding-count">5 findings</div>
+                            </div>
+                            
+                            <div class="findings-list">
+                                <!-- Finding 2 -->
+                                <div class="finding-item">
+                                    <div class="finding-header" onclick="toggleRationale('rationale2')">
+                                        <div class="finding-number">2</div>
+                                        <div>
+                                            <div class="finding-meta">
+                                                <span class="eq-tag">EQ1: Relevance/Appropriateness</span>
+                                            </div>
+                                            <div class="finding-text">UNFPA mandate areas are integrated within the annual Joint Response Plans for the Rohingya refugee crisis as well as in appeals documents for disaster response, including CERF appeals for anticipatory action funding.</div>
+                                        </div>
+                                    </div>
+                                    <div class="rationale-section" id="rationale2">
+                                        <div class="rationale-title">Rationale & Evidence</div>
+                                        
+                                        <div class="context-section">
+                                            <div class="context-label">Cox's Bazar Context:</div>
+                                            <div class="context-text">In the Rohingya response, UNFPA participates in the annual JRP process, which is led by the ISCG in Cox's Bazar and is based on joint needs assessments. UNFPA's leadership in coordination mechanisms for SRH, GBV and youth has contributed to its ability to ensure attention to its mandate areas in the JRP.</div>
+                                        </div>
+                                        
+                                        <div class="context-section">
+                                            <div class="context-label">Country Office Context:</div>
+                                            <div class="context-text">UNFPA's mandate areas are systematically integrated into Humanitarian Response Plans (HRPs), Humanitarian Needs Overviews (HNOs), and appeals for funding. This integration is facilitated by UNFPA's strategic positioning within the disaster response architecture as a member of the HCTT.</div>
+                                        </div>
+                                        
+                                        <div class="example-box">
+                                            <div class="example-label">Key Evidence:</div>
+                                            <div class="context-text">"UNFPA also participates in the Anticipatory Action Technical Working Group (AATWB)... Several external key informants noted the importance of UNFPA's presence in this working group and the agency's significant success in ensuring attention to UNFPA's mandate areas are included in CERF funding for anticipatory action."</div>
+                                        </div>
+                                        
+                                        <div class="example-box">
+                                            <div class="example-label">Funding Data:</div>
+                                            <div class="context-text">"Financial tracking for health more generally and for Protection and GBV across the years covered in the review confirm that funding has been lower than for other sectors."</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <!-- Finding 6 -->
+                                <div class="finding-item">
+                                    <div class="finding-header" onclick="toggleRationale('rationale6')">
+                                        <div class="finding-number">6</div>
+                                        <div>
+                                            <div class="finding-meta">
+                                                <span class="eq-tag">EQ3: GBV Effectiveness</span>
+                                            </div>
+                                            <div class="finding-text">UNFPA and partners have made notable and ongoing contributions to the quality and effectiveness of GBV response in Bangladesh's humanitarian crises, although coverage is an increasingly urgent challenge.</div>
+                                        </div>
+                                    </div>
+                                    <div class="rationale-section" id="rationale6">
+                                        <div class="rationale-title">Rationale & Evidence</div>
+                                        
+                                        <div class="context-section">
+                                            <div class="context-label">Cox's Bazar Context:</div>
+                                            <div class="context-text">UNFPA has led the GBV Sub-Sector since 2017, supporting delivery of GBV services through 21 UNFPA-supported health facilities and 55 women-friendly spaces across 33 camps. The focus gradually moved from setting up services to expanding services and monitoring and improving quality of care.</div>
+                                        </div>
+                                        
+                                        <div class="context-section">
+                                            <div class="context-label">Country Office Context:</div>
+                                            <div class="context-text">At the national level for disaster response, UNFPA co-leads the national GBV Cluster with MOWCA. This leadership has been instrumental in ensuring GBV is recognized as a life-saving intervention in humanitarian action in Bangladesh.</div>
+                                        </div>
+                                        
+                                        <div class="example-box">
+                                            <div class="example-label">Funding Impact Example:</div>
+                                            <div class="context-text">"The most recent GBVIMS (Q1 2025) Bulletin notes that the US Government funding freeze had a profound effect on GBV actors, leading to disruptions in service delivery across eight camps and two host communities: Women and Girls' Safe Spaces in Camps 5, 13, 14, 15, 16, 18, 22, 25, and other GBV service points were either closed or operated on reduced schedules."</div>
+                                        </div>
+                                        
+                                        <div class="example-box">
+                                            <div class="example-label">Innovation Example:</div>
+                                            <div class="context-text">"UNFPA in Cox's Bazar previously worked with the World Bank on an integrated GBV and SRH project that served both refugees and host communities... This new project has a significant split (almost 50/50) of funding between Rohingya refugees and host communities."</div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Finding 7 -->
+                                <div class="finding-item">
+                                    <div class="finding-header" onclick="toggleRationale('rationale7')">
+                                        <div class="finding-number">7</div>
+                                        <div>
+                                            <div class="finding-meta">
+                                                <span class="eq-tag">EQ3: GBV Effectiveness</span>
+                                            </div>
+                                            <div class="finding-text">Uptake of GBV services in humanitarian crises in Bangladesh has improved, particularly in the refugee response, but also for disaster-affected populations. However, data on the impact of services on survivors, their families and communities are lacking.</div>
+                                        </div>
+                                    </div>
+                                    <div class="rationale-section" id="rationale7">
+                                        <div class="rationale-title">Rationale & Evidence</div>
+                                        
+                                        <div class="context-section">
+                                            <div class="context-label">Cox's Bazar Context:</div>
+                                            <div class="context-text">There has been a significant increase in the willingness to report GBV among the Rohingya population, increasing from 14% of women expressing willingness to report in 2018 to 85% in 2024, according to self-reports and survey respondents.</div>
+                                        </div>
+                                        
+                                        <div class="context-section">
+                                            <div class="context-label">Country Office Context:</div>
+                                            <div class="context-text">Community engagement and mobilization efforts have made communities more "responsive to take quality care from the government facility." Mobile services are reaching excluded communities who are accessing integrated SRH/GBV services for the first time.</div>
+                                        </div>
+                                        
+                                        <div class="example-box">
+                                            <div class="example-label">Impact Data Gap:</div>
+                                            <div class="context-text">"IPs more often report on activities and numbers reached, rather than behavioral change or other impact indicators, such as women's decreased risk of violence. The absence of baseline or endline evaluations further inhibits the ability of UNFPA and its IPs to measure change."</div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Finding 9 -->
+                                <div class="finding-item">
+                                    <div class="finding-header" onclick="toggleRationale('rationale9')">
+                                        <div class="finding-number">9</div>
+                                        <div>
+                                            <div class="finding-meta">
+                                                <span class="eq-tag">EQ5: Leadership</span>
+                                            </div>
+                                            <div class="finding-text">For the refugee response, UNFPA has overall shown strong leadership in GBV, SRH, and youth coordination, building out capacity and partnership, and addressing challenges effectively as they arise.</div>
+                                        </div>
+                                    </div>
+                                    <div class="rationale-section" id="rationale9">
+                                        <div class="rationale-title">Rationale & Evidence</div>
+                                        
+                                        <div class="context-section">
+                                            <div class="context-label">Cox's Bazar Context:</div>
+                                            <div class="context-text">UNFPA has taken a clear leadership role in GBV, SRH and youth coordination, with many positive results. In the words of one interviewee, UNFPA is a "very critical part of the overall coordination network" in the refugee response.</div>
+                                        </div>
+                                        
+                                        <div class="example-box">
+                                            <div class="example-label">GBV Coordination Example:</div>
+                                            <div class="context-text">"When a camp authority tried to enter and lock a WFS, the GBV SS took the lead, communicated with the Refugee, Relief and Repatriation Commissioner (RRRC), and organized a coordination meeting with Camp-in-Charges (CICs) to discuss appropriate protocols."</div>
+                                        </div>
+                                        
+                                        <div class="example-box">
+                                            <div class="example-label">SRH Coordination Success:</div>
+                                            <div class="context-text">"The SRH WG, under UNFPA's coordination, launched the GoB Family Planning Strategy for Rohingya Refugees (2022-2025) in collaboration with the Directorate General of Family Planning (DGFP), in 2022."</div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Finding 10 -->
+                                <div class="finding-item">
+                                    <div class="finding-header" onclick="toggleRationale('rationale10')">
+                                        <div class="finding-number">10</div>
+                                        <div>
+                                            <div class="finding-meta">
+                                                <span class="eq-tag">EQ5: Leadership</span>
+                                            </div>
+                                            <div class="finding-text">For disaster responses, GBV coordination is widely recognized as effective. SRH coordination has faced more (external) challenges, but it is also functioning effectively. A&Y do not have a separate coordination mechanism; they utilize an integrated approach.</div>
+                                        </div>
+                                    </div>
+                                    <div class="rationale-section" id="rationale10">
+                                        <div class="rationale-title">Rationale & Evidence</div>
+                                        
+                                        <div class="context-section">
+                                            <div class="context-label">Country Office Context:</div>
+                                            <div class="context-text">Through its leadership of the GBV Cluster, in partnership with the MOWCA, UNFPA has had a "very strong voice" in establishing GBV coordination for disaster response. GBV protection issues were not widely considered important in disaster response before the introduction of the GBV Cluster in 2016.</div>
+                                        </div>
+                                        
+                                        <div class="example-box">
+                                            <div class="example-label">SRH Coordination Challenge:</div>
+                                            <div class="context-text">"Challenges existed with bringing attention to SRH in disasters because the Health Cluster sits under the Infectious Disease Control Department of MOH. Initially, SRH had not been prioritized by Health Cluster leadership because their orientation was towards disease outbreaks."</div>
+                                        </div>
+                                        
+                                        <div class="example-box">
+                                            <div class="example-label">Youth Coordination Approach:</div>
+                                            <div class="context-text">"Unlike in Cox's Bazar, there is no specific A&Y coordination mechanism at the national level for disasters. However, UNFPA has significantly grown its A&Y programming since 2022 with a focus on institutionalization and strengthened partnership with government entities."</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Slide 3: Action C -->
+                <div class="slide">
+                    <div class="slide-left">
+                        <div class="action-header">
+                            <div class="action-letter">C</div>
+                            <div class="action-title">Enhance Data Systems & Impact Measurement</div>
+                            <div class="level-badge level-country">Country Level</div>
+                        </div>
+                        <div class="full-recommendation-text">
+                            C. UNFPA Bangladesh should consider ways in which its population dynamics experts can scale up their contributions to developing better systems for data collection in emergencies, such as designing scalable pre-disaster assessments directly with affected populations; more standardized approaches to illustrating the life-saving impact of GBV interventions; and updating the MISP calculator for Bangladesh.
+                        </div>
+                        
+                        <div class="conclusion-box">
+                            <div class="conclusion-title">Linked Conclusion:</div>
+                            <div class="conclusion-text">
+                                <strong>Conclusion 3:</strong> "UNFPA plays a crucial role in data collection in humanitarian response, from assessments to targeted surveys to information management to programme monitoring, and utilizes data to support the wider humanitarian community and to improve UNFPA's own programmatic response. However, UNFPA's data experts (including population data staff) are not mobilized to their full capacity to support data collection and management for disaster preparedness and response. This includes pre-disaster consultations with affected populations, developing a common beneficiary database for anticipatory action (and joint activities with other agencies), and with the MISP calculator, which requires updating. Data collection could also focus more strategically on capturing the impact of services, in order to better illustrate the life-saving nature of UNFPA-supported interventions, particularly related to GBV."
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="slide-right">
+                        <div class="findings-container">
+                            <div class="findings-header">
+                                <div class="findings-title">Supporting Findings</div>
+                                <div class="finding-count">3 findings</div>
+                            </div>
+                            
+                            <div class="findings-list">
+                                <!-- Finding 3 -->
+                                <div class="finding-item">
+                                    <div class="finding-header" onclick="toggleRationale('rationale3')">
+                                        <div class="finding-number">3</div>
+                                        <div>
+                                            <div class="finding-meta">
+                                                <span class="eq-tag">EQ1: Relevance/Appropriateness</span>
+                                            </div>
+                                            <div class="finding-text">UNFPA is involved in and leads a variety of needs assessments that promote engagement of marginalized groups and support access to services for specific marginalized populations. However, an awareness of needs does not always translate into adequate response, particularly in disasters.</div>
+                                        </div>
+                                    </div>
+                                    <div class="rationale-section" id="rationale3">
+                                        <div class="rationale-title">Rationale & Evidence</div>
+                                        
+                                        <div class="context-section">
+                                            <div class="context-label">Cox's Bazar Context:</div>
+                                            <div class="context-text">In Cox's Bazar in 2024, UNFPA reviewed questions and indicators in the Inter Sector Needs Assessment (ISNA) related to GBV, SRH and youth, and supported training for the ISNA enumerators to ensure they understood the assessment questions and their research approach was safe and ethical.</div>
+                                        </div>
+                                        
+                                        <div class="context-section">
+                                            <div class="context-label">Country Office Context:</div>
+                                            <div class="context-text">Typically in disasters, UNFPA uses preexisting SRH data, including with the MISP calculator, to assess needs when a disaster strikes. However, two external key informants noted that the MISP calculator is based on outdated census data.</div>
+                                        </div>
+                                        
+                                        <div class="example-box">
+                                            <div class="example-label">Data Limitation:</div>
+                                            <div class="context-text">"The MISP calculator that we are still using is based on the last census. Maybe they can update it based on the recent census data, so that the accuracy level will be higher." - UNFPA IP Key Informant</div>
+                                        </div>
+                                        
+                                        <div class="example-box">
+                                            <div class="example-label">Coverage Challenge:</div>
+                                            <div class="context-text">"Resource limitations mean UNFPA can often only reach a minimal percentage (according to one interviewee, perhaps 10-20%) of the affected population, even when needs assessments clearly show a significantly larger scale of impact."</div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Finding 8 -->
+                                <div class="finding-item">
+                                    <div class="finding-header" onclick="toggleRationale('rationale8b')">
+                                        <div class="finding-number">8</div>
+                                        <div>
+                                            <div class="finding-meta">
+                                                <span class="eq-tag">EQ4: Data for Response</span>
+                                            </div>
+                                            <div class="finding-text">UNFPA is facilitating improved use and dissemination of reliable programme and population data in humanitarian response in Bangladesh, although further efforts could show how UNFPA support positively impacts the lives of women and girls, and communities more broadly.</div>
+                                        </div>
+                                    </div>
+                                    <div class="rationale-section" id="rationale8b">
+                                        <div class="rationale-title">Rationale & Evidence</div>
+                                        
+                                        <div class="context-section">
+                                            <div class="context-label">Cox's Bazar Context:</div>
+                                            <div class="context-text">UNFPA has been supporting the deployment of the GBVIMS in Cox's Bazar since May 2018. GBVIMS data is explicitly used to inform evidence-based programming, advocacy, and coordination in the response.</div>
+                                        </div>
+                                        
+                                        <div class="context-section">
+                                            <div class="context-label">Country Office Context:</div>
+                                            <div class="context-text">The lack of dedicated human resources for M&E with the humanitarian team is another challenge which limits UNFPA capacity on data quality, consistency, timeliness, and disaggregation. The current system for humanitarian response uses basic tools like google sheets to store data, not a dedicated humanitarian database.</div>
+                                        </div>
+                                        
+                                        <div class="example-box">
+                                            <div class="example-label">System Limitation:</div>
+                                            <div class="context-text">"UNFPA key informants expressed a need for a central software-based database to reduce paperwork and organize data effectively, suggesting this should be developed at the global level by UNFPA."</div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Finding 15 -->
+                                <div class="finding-item">
+                                    <div class="finding-header" onclick="toggleRationale('rationale15')">
+                                        <div class="finding-number">15</div>
+                                        <div>
+                                            <div class="finding-meta">
+                                                <span class="eq-tag">EQ7: Coherence</span>
+                                            </div>
+                                            <div class="finding-text">UNFPA harmonizes humanitarian response activities with sister agencies via a number of useful channels, although in disaster response resolution on the common beneficiary database has impacted coordination on service delivery for AA.</div>
+                                        </div>
+                                    </div>
+                                    <div class="rationale-section" id="rationale15">
+                                        <div class="rationale-title">Rationale & Evidence</div>
+                                        
+                                        <div class="context-section">
+                                            <div class="context-label">Country Office Context:</div>
+                                            <div class="context-text">Specifically with anticipatory action, UNFPA has experienced challenges in finalizing a common beneficiary database among agencies involved in anticipatory action, hindering the delivery of comprehensive packages despite recognition of its importance.</div>
+                                        </div>
+                                        
+                                        <div class="example-box">
+                                            <div class="example-label">Database Challenge:</div>
+                                            <div class="context-text">"Agencies have internal policies and data sharing agreements that prevent them from contributing to a common list. UNFPA has had reservations due to the perceived sensitivity of its communities, which has resulted in some agencies perceiving UNFPA to be withholding data."</div>
+                                        </div>
+                                        
+                                        <div class="example-box">
+                                            <div class="example-label">Coordination Need:</div>
+                                            <div class="context-text">"How to safely and ethically build out a common beneficiary database to facilitate anticipatory action and disaster response is an area the Country Office has consistently kept the regional office informed for support."</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Slide 4: Action D -->
+                <div class="slide">
+                    <div class="slide-left">
+                        <div class="action-header">
+                            <div class="action-letter">D</div>
+                            <div class="action-title">Strengthen Government Ownership & Leadership</div>
+                            <div class="level-badge level-country">Country Level</div>
+                        </div>
+                        <div class="full-recommendation-text">
+                            D. UNFPA Bangladesh should continue to scale up its work with the government to promote ownership and leadership in SRH, GBV and A&Y coordination, supplies management and programming in humanitarian response.
+                        </div>
+                        
+                        <div class="conclusion-box">
+                            <div class="conclusion-title">Linked Conclusion:</div>
+                            <div class="conclusion-text">
+                                <strong>Conclusion 4:</strong> "UNFPA support has led to significant increases in utilization of a range of SRH, GBV and A&Y services in Cox's Bazar and to a lesser, but still important, extent in sudden-onset disasters over the evaluation period. UNFPA has also improved the quality of these services over time to better address the needs of specific populations, such as PWD and third gender populations. Moreover, UNFPA has sought to maximize efficiency in delivery of services through integrated approaches. However, despite UNFPA's strong relationship with the Government of Bangladesh, sustainability of services presents ongoing and future challenges, particularly in relation to accelerating funding shortfalls affecting Cox's Bazar and short project cycles for disasters."
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="slide-right">
+                        <div class="findings-container">
+                            <div class="findings-header">
+                                <div class="findings-title">Supporting Findings</div>
+                                <div class="finding-count">6 findings</div>
+                            </div>
+                            
+                            <div class="findings-list">
+                                <!-- Finding 4 -->
+                                <div class="finding-item">
+                                    <div class="finding-header" onclick="toggleRationale('rationale4')">
+                                        <div class="finding-number">4</div>
+                                        <div>
+                                            <div class="finding-meta">
+                                                <span class="eq-tag">EQ2: SRH Effectiveness</span>
+                                            </div>
+                                            <div class="finding-text">UNFPA's programming in Bangladesh supports the delivery of specialized SRH services and commodities in humanitarian response, with efforts focused on accessibility and the specific needs of vulnerable populations. However, the extent to which these services consistently meet quality and accessibility standards across all affected areas varies, and challenges persist with coverage.</div>
+                                        </div>
+                                    </div>
+                                    <div class="rationale-section" id="rationale4">
+                                        <div class="rationale-title">Rationale & Evidence</div>
+                                        
+                                        <div class="context-section">
+                                            <div class="context-label">Cox's Bazar Context:</div>
+                                            <div class="context-text">UNFPA has had success in ensuring delivery of a wide range of SRH services and commodities in Cox's Bazar, not only to refugees, but also the host community. According to one internal key informant, UNFPA covers almost 90% of the SRH commodities across the response in Cox's Bazar.</div>
+                                        </div>
+                                        
+                                        <div class="context-section">
+                                            <div class="context-label">Country Office Context:</div>
+                                            <div class="context-text">During disaster response, UNFPA's programmatic priority is to implement the MISP. Essential commodities such as RH kits, dignity kits and MHM kits are procured and stored centrally and locally to ensure faster delivery and distribution during disasters.</div>
+                                        </div>
+                                        
+                                        <div class="example-box">
+                                            <div class="example-label">Quality Improvement:</div>
+                                            <div class="context-text">"Following the Joint Monitoring and Assessment, the SRH Working Group started to take targeted actions to improve service quality through its Quality Improvement Technical Team, led by UNFPA's Quality Assurance Analyst."</div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Finding 5 -->
+                                <div class="finding-item">
+                                    <div class="finding-header" onclick="toggleRationale('rationale5')">
+                                        <div class="finding-number">5</div>
+                                        <div>
+                                            <div class="finding-meta">
+                                                <span class="eq-tag">EQ2: SRH Effectiveness</span>
+                                            </div>
+                                            <div class="finding-text">Utilization of a broad range of quality SRH services has improved in Cox's Bazar and to a lesser (but still important) extent in acute disasters during the review period.</div>
+                                        </div>
+                                    </div>
+                                    <div class="rationale-section" id="rationale5">
+                                        <div class="rationale-title">Rationale & Evidence</div>
+                                        
+                                        <div class="context-section">
+                                            <div class="context-label">Cox's Bazar Context:</div>
+                                            <div class="context-text">An SRH survey undertaken in 2024 showed that contraceptive prevalence rates (CPR) increased significantly from almost 33% in 2021 to 55% in 2024 among the Rohingyas. Adolescent pregnancies among the Rohingya population fell from 18% in 2019 to 7% in 2024.</div>
+                                        </div>
+                                        
+                                        <div class="context-section">
+                                            <div class="context-label">Country Office Context:</div>
+                                            <div class="context-text">Data from the SRH response to flash floods in 2022 suggests that a total of 1,213 safe deliveries were conducted by skilled midwives during the 9 months of the project period--a significant increase compared to only 120 deliveries in the same facilities in the 9 months prior to the intervention.</div>
+                                        </div>
+                                        
+                                        <div class="example-box">
+                                            <div class="example-label">Impact Data:</div>
+                                            <div class="context-text">"While maternal deaths in the refugee camps remain a major challenge, there has been a gradual decline in the number of deaths, from 84 in 2021 to 46 in 2024. This is linked to efforts including the maternal and perinatal mortality surveillance system and expert review committees."</div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Finding 6 -->
+                                <div class="finding-item">
+                                    <div class="finding-header" onclick="toggleRationale('rationale6d')">
+                                        <div class="finding-number">6</div>
+                                        <div>
+                                            <div class="finding-meta">
+                                                <span class="eq-tag">EQ3: GBV Effectiveness</span>
+                                            </div>
+                                            <div class="finding-text">UNFPA and partners have made notable and ongoing contributions to the quality and effectiveness of GBV response in Bangladesh's humanitarian crises, although adequate coverage is an increasingly urgent challenge.</div>
+                                        </div>
+                                    </div>
+                                    <div class="rationale-section" id="rationale6d">
+                                        <div class="rationale-title">Rationale & Evidence</div>
+                                        
+                                        <div class="context-section">
+                                            <div class="context-label">Cox's Bazar Context:</div>
+                                            <div class="context-text">Data from a UNFPA 2023 project proposal indicated UNFPA at that time was covering 73% of GBV service facilities and leading in preventive, risk mitigation and response activities in 82% of the service locations, including refugee camps and host communities.</div>
+                                        </div>
+                                        
+                                        <div class="context-section">
+                                            <div class="context-label">Country Office Context:</div>
+                                            <div class="context-text">In the last several years, there has been a shift from GBV response being primarily dignity kit distribution to including a broader range of services. Resource allocation for disaster-related GBV programmes has also increased significantly since 2022.</div>
+                                        </div>
+                                        
+                                        <div class="example-box">
+                                            <div class="example-label">Service Expansion:</div>
+                                            <div class="context-text">"UNFPA has championed the development and implementation of GBV case management, working towards models that are social service and MHPSS-led, moving beyond a primary focus on police response."</div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Finding 7 -->
+                                <div class="finding-item">
+                                    <div class="finding-header" onclick="toggleRationale('rationale7d')">
+                                        <div class="finding-number">7</div>
+                                        <div>
+                                            <div class="finding-meta">
+                                                <span class="eq-tag">EQ3: GBV Effectiveness</span>
+                                            </div>
+                                            <div class="finding-text">Uptake of GBV services in humanitarian crises in Bangladesh has improved, particularly in the refugee response, but also for disaster-affected populations. However, data on the impact of services on survivors, their families and communities are lacking.</div>
+                                        </div>
+                                    </div>
+                                    <div class="rationale-section" id="rationale7d">
+                                        <div class="rationale-title">Rationale & Evidence</div>
+                                        
+                                        <div class="context-section">
+                                            <div class="context-label">Cox's Bazar Context:</div>
+                                            <div class="context-text">In 2022, UNFPA-supported WFS' addressed the needs of over 311,000 women and girls, and in 2023, more than 326,000 women and girls accessed GBV prevention and response services through WFS.</div>
+                                        </div>
+                                        
+                                        <div class="context-section">
+                                            <div class="context-label">Country Office Context:</div>
+                                            <div class="context-text">There is evidence that mobile services are reaching excluded communities who are accessing integrated SRH/GBV services for the first time. In one example, during the Northern floods, volunteers and midwives traveled by boat for several hours to reach remote "Char areas" to conduct mobile SRH health camps.</div>
+                                        </div>
+                                        
+                                        <div class="example-box">
+                                            <div class="example-label">Impact Measurement Gap:</div>
+                                            <div class="context-text">"IPs more often report on activities and numbers reached, rather than behavioral change or other impact indicators, such as women's decreased risk of violence. The absence of baseline or endline evaluations further inhibits the ability of UNFPA and its IPs to measure change."</div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Finding 14 -->
+                                <div class="finding-item">
+                                    <div class="finding-header" onclick="toggleRationale('rationale14')">
+                                        <div class="finding-number">14</div>
+                                        <div>
+                                            <div class="finding-meta">
+                                                <span class="eq-tag">EQ7: Coherence</span>
+                                            </div>
+                                            <div class="finding-text">UNFPA has mainstreamed co-location and integration of GBV, SRH and youth services as a standard approach in both refugee response and disasters to build synergies and maximize resources.</div>
+                                        </div>
+                                    </div>
+                                    <div class="rationale-section" id="rationale14">
+                                        <div class="rationale-title">Rationale & Evidence</div>
+                                        
+                                        <div class="context-section">
+                                            <div class="context-label">Cox's Bazar Context:</div>
+                                            <div class="context-text">Examples of integration include: GBV case workers placed in SRH facilities supported by UNFPA; SRH midwives placed in WFS and WLCCs which are GBV-focused facilities; SRH services available in youth centers; all UNFPA's centers provide referral to its other programmes.</div>
+                                        </div>
+                                        
+                                        <div class="context-section">
+                                            <div class="context-label">Country Office Context:</div>
+                                            <div class="context-text">Examples from disaster response include: Mobile SRH Health Camps used during disasters provide referrals for GBV response services; Union-level health facilities supported to provide life-saving SRH and health sector response to GBV services through midwives.</div>
+                                        </div>
+                                        
+                                        <div class="example-box">
+                                            <div class="example-label">Integration Benefits:</div>
+                                            <div class="context-text">"UNFPA documentation regularly emphasizes the benefits of this integration, in terms of ensuring needs of women and girls are met more comprehensively; programmes are mutually supportive; and entry points for women and girls to access services are amplified."</div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Finding 17 -->
+                                <div class="finding-item">
+                                    <div class="finding-header" onclick="toggleRationale('rationale17')">
+                                        <div class="finding-number">17</div>
+                                        <div>
+                                            <div class="finding-meta">
+                                                <span class="eq-tag">EQ8: Connectedness</span>
+                                            </div>
+                                            <div class="finding-text">While UNFPA's humanitarian interventions often include capacity development and ownership at national and local levels, short-term and limited funding affects success in this area.</div>
+                                        </div>
+                                    </div>
+                                    <div class="rationale-section" id="rationale17">
+                                        <div class="rationale-title">Rationale & Evidence</div>
+                                        
+                                        <div class="context-section">
+                                            <div class="context-label">Cox's Bazar Context:</div>
+                                            <div class="context-text">UNFPA prioritizes multi-year funding as is possible, particularly in Cox's Bazar where the majority of UNFPA's 48-50 IPs are local. Training of youth volunteers to manage youth centers in the Rohingya camps is another example of building out localization efforts.</div>
+                                        </div>
+                                        
+                                        <div class="context-section">
+                                            <div class="context-label">Country Office Context:</div>
+                                            <div class="context-text">A key example of government ownership is the integration of the MISP into the government operational plan, which covers both development and disasters. UNFPA trains midwives in collaboration with the government and deploys them to government facilities.</div>
+                                        </div>
+                                        
+                                        <div class="example-box">
+                                            <div class="example-label">Sustainability Challenge:</div>
+                                            <div class="context-text">"When asked about the sustainability of programming initiated for disaster response, a UNFPA key informant noted: 'The counselor who deployed to the government facility, I would say that is not fully sustainable, because whenever any disaster ends they lose funding.'"</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Slide 5: Action E -->
+                <div class="slide">
+                    <div class="slide-left">
+                        <div class="action-header">
+                            <div class="action-letter">E</div>
+                            <div class="action-title">Streamline Financial Procedures & Partner Engagement</div>
+                            <div class="level-badge level-country">Country Level</div>
+                        </div>
+                        <div class="full-recommendation-text">
+                            E. UNFPA should streamline its financial and administrative procedures to reduce delays for implementing partners in receiving funding, and develop strategies for more consistent engagement with IPs in project planning and financial management, including minimizing or eliminating pre-financing of activities by local partners.
+                        </div>
+                        
+                        <div class="conclusion-box">
+                            <div class="conclusion-title">Linked Conclusion:</div>
+                            <div class="conclusion-text">
+                                <strong>Conclusion 5:</strong> "UNFPA has launched several procedural improvements and innovations at the CO level to facilitate humanitarian response, including developing its own SOPs for the CO's initial response to natural disaster triggering L1 and L2 in country led response and drafting annual UNFPA-specific contingency plans for disaster response. Nevertheless, there are still some challenges with operational agility and accountability to IPs, particularly in terms of ensuring rapid disbursement of funds to partners in the early stages of disaster response."
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="slide-right">
+                        <div class="findings-container">
+                            <div class="findings-header">
+                                <div class="findings-title">Supporting Findings</div>
+                                <div class="finding-count">3 findings</div>
+                            </div>
+                            
+                            <div class="findings-list">
+                                <!-- Finding 11 -->
+                                <div class="finding-item">
+                                    <div class="finding-header" onclick="toggleRationale('rationale11e')">
+                                        <div class="finding-number">11</div>
+                                        <div>
+                                            <div class="finding-meta">
+                                                <span class="eq-tag">EQ6: Efficiency</span>
+                                            </div>
+                                            <div class="finding-text">UNFPA Bangladesh has implemented several procedural improvements and innovations to facilitate humanitarian response, with key support from the UNFPA AP regional office.</div>
+                                        </div>
+                                    </div>
+                                    <div class="rationale-section" id="rationale11e">
+                                        <div class="rationale-title">Rationale & Evidence</div>
+                                        
+                                        <div class="context-section">
+                                            <div class="context-label">Country Office Context:</div>
+                                            <div class="context-text">Another example of a key efficiency measure was the introduction of decentralized procurement procedures in 2021. Via these, UNFPA has decentralized warehouses to IPs located in disaster-prone areas. This is a lower-cost option compared to central commercial warehouses and allows for quick mobilization.</div>
+                                        </div>
+                                        
+                                        <div class="example-box">
+                                            <div class="example-label">Innovation Examples:</div>
+                                            <div class="context-text">"The UNFPA CO has participated in and/or introduced a number of other innovations, such as... the use of cash and voucher assistance leveraging blockchain technology for security."</div>
+                                        </div>
+                                        
+                                        <div class="example-box">
+                                            <div class="example-label">Regional Support:</div>
+                                            <div class="context-text">"Several UNFPA key informants noted how useful the regional office has been in facilitating learning and providing support to some of these initiatives. UNFPA key informants also variously noted that the regional office has also supported in areas including A&Y, AAP, integrating disability inclusion, and pre-positioning of supplies."</div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Finding 12 -->
+                                <div class="finding-item">
+                                    <div class="finding-header" onclick="toggleRationale('rationale12')">
+                                        <div class="finding-number">12</div>
+                                        <div>
+                                            <div class="finding-meta">
+                                                <span class="eq-tag">EQ6: Efficiency</span>
+                                            </div>
+                                            <div class="finding-text">Despite efficiency gains and innovation in humanitarian response, UNFPA Bangladesh still faces challenges with operational agility and partnerships.</div>
+                                        </div>
+                                    </div>
+                                    <div class="rationale-section" id="rationale12">
+                                        <div class="rationale-title">Rationale & Evidence</div>
+                                        
+                                        <div class="context-section">
+                                            <div class="context-label">Country Office Context:</div>
+                                            <div class="context-text">Challenges remain with timely resource mobilization, particularly the transfer of cash to IPs for rapid response to disasters. Delays can be significant, sometimes 20-25 days or even a month for emergency funding according to external key informants.</div>
+                                        </div>
+                                        
+                                        <div class="example-box">
+                                            <div class="example-label">IP Perspective:</div>
+                                            <div class="context-text">"What is the ongoing challenge, because it's related with the programme implementation, is the fund disbursing….sometimes consumes two or three months to pay under disbursing. So during this period, we need to continue our work from our fund, our own organizational fund." - UNFPA IP Key Informant</div>
+                                        </div>
+                                        
+                                        <div class="example-box">
+                                            <div class="example-label">Partner Engagement Gap:</div>
+                                            <div class="context-text">"IPs expressed a desire for more reciprocal accountability and engagement in both Cox's Bazar and at the national level, such as IPs having a stronger voice in programme design and adaptation."</div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Finding 16 -->
+                                <div class="finding-item">
+                                    <div class="finding-header" onclick="toggleRationale('rationale16e')">
+                                        <div class="finding-number">16</div>
+                                        <div>
+                                            <div class="finding-meta">
+                                                <span class="eq-tag">EQ8: Connectedness</span>
+                                            </div>
+                                            <div class="finding-text">UNFPA promotes several humanitarian preparedness and response interventions in Bangladesh that support, and plan for, longer-term developmental and resilience-related goals.</div>
+                                        </div>
+                                    </div>
+                                    <div class="rationale-section" id="rationale16e">
+                                        <div class="rationale-title">Rationale & Evidence</div>
+                                        
+                                        <div class="context-section">
+                                            <div class="context-label">Country Office Context:</div>
+                                            <div class="context-text">The challenge of slow fund disbursement is particularly acute for Anticipatory Action, where the entire value proposition is based on speed. UNFPA staff noted the need for a mechanism for continuous budget availability at short notice.</div>
+                                        </div>
+                                        
+                                        <div class="example-box">
+                                            <div class="example-label">Funding Comparison:</div>
+                                            <div class="context-text">"A comparison was made by a UNFPA key informant to UNICEF, which the key informant noted has core funding available in a separate pool for humanitarian purposes: 'If [UNFPA] wants to stay relevant during disasters, then we need to have our own sort of substantive funds that we can quickly channelize. UNICEF has it, but we don't have it, and our mandate is equally important.'"</div>
+                                        </div>
+                                        
+                                        <div class="example-box">
+                                            <div class="example-label">Procedural Need:</div>
+                                            <div class="context-text">"'We don't have any flexible policies and procedures supporting this system, like we had to distribute cash to the beneficiaries. But implementing partners supported us. They withdrew their own money to distribute cash because UNFPA was not able to transfer this cash to the IP at that quick time. So that financial procedure should be in place to support these kind of activities.' - UNFPA Key Informant"</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Slide 6: Action F -->
+                <div class="slide">
+                    <div class="slide-left">
+                        <div class="action-header">
+                            <div class="action-letter">F</div>
+                            <div class="action-title">Develop Corporate Nexus & Anticipatory Action Guidance</div>
+                            <div class="level-badge level-global">Global Level</div>
+                        </div>
+                        <div class="full-recommendation-text">
+                            F. UNFPA HRD should support learning from CO's globally (including Bangladesh) to develop guidance on working at the nexus, not least as an important corporate strategy for accessing a greater variety of funds in humanitarian response, but also to elevate UNFPA's position as a nexus agency. This could also include finalizing specific guidance on Anticipatory Action.
+                        </div>
+                        
+                        <div class="conclusion-box">
+                            <div class="conclusion-title">Linked Conclusion:</div>
+                            <div class="conclusion-text">
+                                <strong>Conclusion 1:</strong> "UNFPA in Bangladesh is committed to investing in climate adaptation and working across the nexus, and is spearheading many important initiatives that facilitate preparedness, early disaster response, resilient early recovery, and, in Cox's Bazar, area-based responses that include host communities. The current CPD underscores this commitment, as does UNFPA's innovative programming such as cash and voucher assistance, anticipatory action and decentralized procurement. However, there is no specific articulation in the CPD or in specific country programme guidance on what the nexus entails for the CO."
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="slide-right">
+                        <div class="findings-container">
+                            <div class="findings-header">
+                                <div class="findings-title">Supporting Findings</div>
+                                <div class="finding-count">3 findings</div>
+                            </div>
+                            
+                            <div class="findings-list">
+                                <!-- Finding 1 -->
+                                <div class="finding-item">
+                                    <div class="finding-header" onclick="toggleRationale('rationale1f')">
+                                        <div class="finding-number">1</div>
+                                        <div>
+                                            <div class="finding-meta">
+                                                <span class="eq-tag">EQ1: Relevance/Appropriateness</span>
+                                            </div>
+                                            <div class="finding-text">While the current (10th) CPD for Bangladesh (2022-2026) departs from the 9th CPD's humanitarian commitments insofar as it does not reference refugee response, there is significantly increased attention to disaster preparedness and response and UNFPA's commitment to working across the humanitarian-development continuum in the 10th CPD.</div>
+                                        </div>
+                                    </div>
+                                    <div class="rationale-section" id="rationale1f">
+                                        <div class="rationale-title">Rationale & Evidence</div>
+                                        
+                                        <div class="context-section">
+                                            <div class="context-label">Global Context:</div>
+                                            <div class="context-text">The Bangladesh CO has "embraced a mindset" but lacks clear corporate definitions and targets for the "humanitarian-development continuum," leading to inconsistent interpretation and implementation across country offices.</div>
+                                        </div>
+                                        
+                                        <div class="example-box">
+                                            <div class="example-label">Guidance Gap:</div>
+                                            <div class="context-text">"The CO has demonstrated capacity to develop contextualized tools like SOPs and AA protocols. A global initiative led by HRD could harvest these innovations from Bangladesh and other COs to create standardized, corporate guidance, preventing duplication of effort and ensuring best practices are shared globally."</div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Finding 11 -->
+                                <div class="finding-item">
+                                    <div class="finding-header" onclick="toggleRationale('rationale11f')">
+                                        <div class="finding-number">11</div>
+                                        <div>
+                                            <div class="finding-meta">
+                                                <span class="eq-tag">EQ6: Efficiency</span>
+                                            </div>
+                                            <div class="finding-text">UNFPA Bangladesh has implemented several procedural improvements and innovations to facilitate humanitarian response.</div>
+                                        </div>
+                                    </div>
+                                    <div class="rationale-section" id="rationale11f">
+                                        <div class="rationale-title">Rationale & Evidence</div>
+                                        
+                                        <div class="context-section">
+                                            <div class="context-label">Global Context:</div>
+                                            <div class="context-text">CO-developed SOPs and AA protocol represent valuable innovations that should be captured in corporate guidance to prevent duplication and share best practices globally.</div>
+                                        </div>
+                                        
+                                        <div class="example-box">
+                                            <div class="example-label">Learning Opportunity:</div>
+                                            <div class="context-text">"Evaluation key informants were less positive regarding support from HRD, noting that the relationship was less clear... The link between HQ-level discussions (e.g., on AA) and country-level operations is felt to be not always effective, with one UNFPA key informant noting gaps in structured internal communication and coordination to help country offices position themselves on global issues."</div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Finding 13 -->
+                                <div class="finding-item">
+                                    <div class="finding-header" onclick="toggleRationale('rationale13f')">
+                                        <div class="finding-number">13</div>
+                                        <div>
+                                            <div class="finding-meta">
+                                                <span class="eq-tag">EQ6: Efficiency</span>
+                                            </div>
+                                            <div class="finding-text">Although well-staffed in comparison to other UNFPA COs, ensuring adequate human resources has been a challenge in both Cox's Bazar and in UNFPA's disaster response.</div>
+                                        </div>
+                                    </div>
+                                    <div class="rationale-section" id="rationale13f">
+                                        <div class="rationale-title">Rationale & Evidence</div>
+                                        
+                                        <div class="context-section">
+                                            <div class="context-label">Global Context:</div>
+                                            <div class="context-text">The frequency of disasters requires more substantial humanitarian team. Global guidance should include HR policy support to help COs define necessary structures for nexus programming.</div>
+                                        </div>
+                                        
+                                        <div class="example-box">
+                                            <div class="example-label">Staffing Challenge:</div>
+                                            <div class="context-text">"The staffing challenges related to sustaining nexus work in a disaster-prone country highlight a systemic issue. Global-level guidance from HRD should be accompanied by policy and resource support to help COs define and make the case for the necessary human resource structures to implement nexus programming effectively."</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Slide 7: Action G -->
+                <div class="slide">
+                    <div class="slide-left">
+                        <div class="action-header">
+                            <div class="action-letter">G</div>
+                            <div class="action-title">Develop Emergency Monitoring Systems & Impact Indicators</div>
+                            <div class="level-badge level-global">Global Level</div>
+                        </div>
+                        <div class="full-recommendation-text">
+                            G. UNFPA HRD should support the development of better monitoring systems for emergencies with a clear set of indicators. This monitoring should include strategies for collecting and sharing data on the life-saving impact of GBV programming (alongside SRH and A&Y programming).
+                        </div>
+                        
+                        <div class="conclusion-box">
+                            <div class="conclusion-title">Linked Conclusion:</div>
+                            <div class="conclusion-text">
+                                <strong>Conclusion 3:</strong> "UNFPA plays a crucial role in data collection in humanitarian response, from assessments to targeted surveys to information management to programme monitoring, and utilizes data to support the wider humanitarian community and to improve UNFPA's own programmatic response. However, UNFPA's data experts (including population data staff) are not mobilized to their full capacity to support data collection and management for disaster preparedness and response. This includes pre-disaster consultations with affected populations, developing a common beneficiary database for anticipatory action (and joint activities with other agencies), and with the MISP calculator, which requires updating. Data collection could also focus more strategically on capturing the impact of services, in order to better illustrate the life-saving nature of UNFPA-supported interventions, particularly related to GBV."
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="slide-right">
+                        <div class="findings-container">
+                            <div class="findings-header">
+                                <div class="findings-title">Supporting Findings</div>
+                                <div class="finding-count">3 findings</div>
+                            </div>
+                            
+                            <div class="findings-list">
+                                <!-- Finding 7 -->
+                                <div class="finding-item">
+                                    <div class="finding-header" onclick="toggleRationale('rationale7g')">
+                                        <div class="finding-number">7</div>
+                                        <div>
+                                            <div class="finding-meta">
+                                                <span class="eq-tag">EQ3: GBV Effectiveness</span>
+                                            </div>
+                                            <div class="finding-text">Uptake of GBV services in humanitarian crises in Bangladesh has improved, particularly in the refugee response, but also for disaster-affected populations. However, data on the impact of services on survivors, their families and communities are lacking.</div>
+                                        </div>
+                                    </div>
+                                    <div class="rationale-section" id="rationale7g">
+                                        <div class="rationale-title">Rationale & Evidence</div>
+                                        
+                                        <div class="context-section">
+                                            <div class="context-label">Global Context:</div>
+                                            <div class="context-text">The absence of common outcome and impact indicators for GBV programming is a global, not just country-specific, issue. IPs in Bangladesh report on activities, not on behavioral change or reduced risk.</div>
+                                        </div>
+                                        
+                                        <div class="example-box">
+                                            <div class="example-label">Corporate Need:</div>
+                                            <div class="context-text">"HRD is best positioned to lead the development of a standardized set of impact indicators and methodologies that all COs can use to demonstrate the life-saving value of GBV interventions—especially in the current context of reduced funding for GBV."</div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Finding 8 -->
+                                <div class="finding-item">
+                                    <div class="finding-header" onclick="toggleRationale('rationale8g')">
+                                        <div class="finding-number">8</div>
+                                        <div>
+                                            <div class="finding-meta">
+                                                <span class="eq-tag">EQ4: Data for Response</span>
+                                            </div>
+                                            <div class="finding-text">UNFPA is facilitating improved use and dissemination of reliable programme and population data in humanitarian response in Bangladesh, although further efforts could show how UNFPA support positively impacts the lives of women and girls, and communities more broadly.</div>
+                                        </div>
+                                    </div>
+                                    <div class="rationale-section" id="rationale8g">
+                                        <div class="rationale-title">Rationale & Evidence</div>
+                                        
+                                        <div class="context-section">
+                                            <div class="context-label">Global Context:</div>
+                                            <div class="context-text">The Bangladesh CO faces challenges with a lack of dedicated humanitarian M&E staff and uses basic tools like Google Sheets, expressing a need for a central software-based database. This is a systemic resourcing and tools issue that requires a global solution.</div>
+                                        </div>
+                                        
+                                        <div class="example-box">
+                                            <div class="example-label">Systemic Solution Needed:</div>
+                                            <div class="context-text">"HRD can support the development and rollout of corporate monitoring systems and software for emergencies. The current system for humanitarian response uses basic tools like google sheets to store data, not a dedicated humanitarian database."</div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Finding 15 -->
+                                <div class="finding-item">
+                                    <div class="finding-header" onclick="toggleRationale('rationale15g')">
+                                        <div class="finding-number">15</div>
+                                        <div>
+                                            <div class="finding-meta">
+                                                <span class="eq-tag">EQ7: Coherence</span>
+                                            </div>
+                                            <div class="finding-text">UNFPA harmonizes humanitarian response activities with sister agencies via a number of useful channels, although in disaster response resolution on the common beneficiary database has impacted coordination on service delivery for AA.</div>
+                                        </div>
+                                    </div>
+                                    <div class="rationale-section" id="rationale15g">
+                                        <div class="rationale-title">Rationale & Evidence</div>
+                                        
+                                        <div class="context-section">
+                                            <div class="context-label">Global Context:</div>
+                                            <div class="context-text">The bottleneck in creating a common beneficiary database for Anticipatory Action is partly due to a lack of global standards and data-sharing protocols. The Bangladesh CO has been communicating with HQ on this need.</div>
+                                        </div>
+                                        
+                                        <div class="example-box">
+                                            <div class="example-label">Corporate Standards Needed:</div>
+                                            <div class="context-text">"HRD, in coordination with other agencies at the global level, is the appropriate entity to develop corporate data-sharing agreements and technical standards for beneficiary databases to enable effective inter-agency collaboration."</div>
+                                        </div>
+                                        
+                                        <div class="example-box">
+                                            <div class="example-label">HQ Communication:</div>
+                                            <div class="context-text">"It was noted by a UNFPA key informant that (a) CO Bangladesh has been communicating to HQs on the need to create corporate beneficiary database, and (b) HRD has not necessarily been proactive in this regard."</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="navigation">
+            <button class="nav-btn" id="prevBtn">
+                ← Previous
+            </button>
+            
+            <div class="slide-indicators">
+                <span class="section-title">Country Level:</span>
+                <div class="slide-indicator active" data-slide="0"></div>
+                <div class="slide-indicator" data-slide="1"></div>
+                <div class="slide-indicator" data-slide="2"></div>
+                <div class="slide-indicator" data-slide="3"></div>
+                <div class="slide-indicator" data-slide="4"></div>
+                
+                <span class="section-title" style="margin-left: 15px;">Global Level:</span>
+                <div class="slide-indicator" data-slide="5"></div>
+                <div class="slide-indicator" data-slide="6"></div>
+                
+                <span class="slide-counter">Slide <span id="currentSlide">1</span> of 7</span>
+            </div>
+            
+            <button class="nav-btn" id="nextBtn">
+                Next →
+            </button>
+        </div>
+        
+        <footer>
+            <p>UNFPA Independent Evaluation Office | June 2025</p>
+            <p>Evaluation of the capacity of UNFPA in humanitarian action - Country Note: Bangladesh</p>
+        </footer>
+    </div>
+
+    <script>
+        function toggleRationale(id) {
+            const rationale = document.getElementById(id);
+            rationale.classList.toggle('active');
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const slides = document.querySelector('.slides');
+            const slideIndicators = document.querySelectorAll('.slide-indicator');
+            const prevBtn = document.getElementById('prevBtn');
+            const nextBtn = document.getElementById('nextBtn');
+            const currentSlideSpan = document.getElementById('currentSlide');
+            const actionHeaders = document.querySelectorAll('.action-header');
+            
+            let currentSlide = 0;
+            const totalSlides = 7;
+            
+            function updateSlide() {
+                slides.style.transform = `translateX(-${currentSlide * 100}%)`;
+                currentSlideSpan.textContent = currentSlide + 1;
+                
+                // Update indicators
+                slideIndicators.forEach((indicator, index) => {
+                    indicator.classList.toggle('active', index === currentSlide);
+                });
+                
+                // Update button states
+                prevBtn.disabled = currentSlide === 0;
+                nextBtn.disabled = currentSlide === totalSlides - 1;
+                
+                // Close all rationale and recommendation sections when changing slides
+                document.querySelectorAll('.rationale-section').forEach(section => {
+                    section.classList.remove('active');
+                });
+                document.querySelectorAll('.full-recommendation-text').forEach(section => {
+                    section.classList.remove('visible');
+                });
+            }
+            
+            // Toggle full recommendation text on click
+            actionHeaders.forEach(header => {
+                header.addEventListener('click', function() {
+                    const fullText = this.nextElementSibling;
+                    if (fullText && fullText.classList.contains('full-recommendation-text')) {
+                        fullText.classList.toggle('visible');
+                    }
+                });
+            });
+
+            // Navigation buttons
+            prevBtn.addEventListener('click', () => {
+                if (currentSlide > 0) {
+                    currentSlide--;
+                    updateSlide();
+                }
+            });
+            
+            nextBtn.addEventListener('click', () => {
+                if (currentSlide < totalSlides - 1) {
+                    currentSlide++;
+                    updateSlide();
+                }
+            });
+            
+            // Indicator clicks
+            slideIndicators.forEach((indicator, index) => {
+                indicator.addEventListener('click', () => {
+                    currentSlide = index;
+                    updateSlide();
+                });
+            });
+            
+            // Keyboard navigation
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'ArrowLeft' && currentSlide > 0) {
+                    currentSlide--;
+                    updateSlide();
+                } else if (e.key === 'ArrowRight' && currentSlide < totalSlides - 1) {
+                    currentSlide++;
+                    updateSlide();
+                }
+            });
+            
+            // Initialize
+            updateSlide();
+        });
+    </script>
+</body>
+</html>
